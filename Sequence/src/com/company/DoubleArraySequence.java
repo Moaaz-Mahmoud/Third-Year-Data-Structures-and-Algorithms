@@ -54,13 +54,44 @@ public class DoubleArraySequence {
      * take this sequence beyond its current capacity, then the capacity is increased before adding
      * the new element.
      * @param element  The new element to be added.
-     * @post
+     * @post  A new element has been added to this sequence just after currentIndex.
      * @throws OutOfMemoryError  Indicates insufficient memory to increase the size of this sequence.
      * @implNote An attempt to increase the capacity beyond Integer.MAX_VALUE will cause this sequence
      *           to fail with an arithmetic overflow.
      */
     public void addAfter(double element){
+        if(size == capacity){
+            Double newBuffer[];
+            try {
+                newBuffer = new Double[capacity*2];
+            }
+            catch (OutOfMemoryError e){
+                throw e;
+            }
 
+            //    [0, 1, ..., curIndex, curIndex+1, ..., size-1]
+            // -> [0, 1, ..., curIndex, elem, curIndex+1, ..., size-1]
+            //No change till curIndex
+            for(int i = 0; i <= currentIndex; i++){
+                newBuffer[i] = buffer[i];
+            }
+            //Shift starting from curIndex+1
+            for(int i = size; i >= currentIndex+2; i--) {
+                newBuffer[i] = buffer[i-1];
+            }
+            //At this point, newBuffer = [0, 1, ..., curIndex, curIndex, ..., size-1]
+            newBuffer[currentIndex+1] = element;
+            buffer = newBuffer;
+        }
+        else{
+            //Shift starting from curIndex+1
+            for(int i = size; i >= currentIndex+1; i--) {
+                buffer[i] = buffer[i-1];
+            }
+            //At this point, buffer = [0, 1, ..., curIndex, curIndex, ..., size-1]
+            buffer[currentIndex+1] = element;
+        }
+        size++;
     }
     /**
      * Adds a new element to this sequence before the current element. If this new element would
