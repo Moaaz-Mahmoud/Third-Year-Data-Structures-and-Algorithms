@@ -1,9 +1,7 @@
 package com.company;
 
-
-public class Main {
-
-    public static void main(String[] args) {
+class ArraySequenceTester{
+    public static void runTests(){
         DoubleArraySequence A = new DoubleArraySequence();
         DoubleArraySequence B = new DoubleArraySequence();
         A.addBefore(0);
@@ -43,5 +41,23 @@ public class Main {
         A.trimToSize();
         System.out.print(A.size());
         System.out.print("\n\n______________________________\n\n");
+    }
+}
+class LinkedSequenceTester{
+    public static void test1(){
+        DoubleLinkedSequence A = new DoubleLinkedSequence();
+        A.addAfter(2);
+        A.addAfter(20);
+        A.addAfter(200);
+    }
+    public static void test2(){
+
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+        LinkedSequenceTester.test1();
     }
 }

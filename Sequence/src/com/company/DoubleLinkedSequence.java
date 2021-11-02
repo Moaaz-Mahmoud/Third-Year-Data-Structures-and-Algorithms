@@ -20,6 +20,12 @@ public class DoubleLinkedSequence {
      * @throws OutOfMemoryError  Indicates insufficient memory for a new node.
      */
     public void addAfter(double element) {
+        currentElementStatus = true;
+        if(head == null){
+            head = new Node(element, null);
+            currentNode = head;
+            return;
+        }
         Node newNode = new Node(element, currentNode.getLink());
         currentNode.setLink(newNode);
         currentNode = currentNode.getLink();
@@ -154,6 +160,4 @@ public class DoubleLinkedSequence {
     public void start(){
         currentNode = head;
     }
-
-
 }
