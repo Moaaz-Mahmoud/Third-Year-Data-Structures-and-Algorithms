@@ -46,6 +46,7 @@ class ArraySequenceTester{
 class LinkedSequenceTester{
     public static void test1(){
         DoubleLinkedSequence A = new DoubleLinkedSequence();
+        A.start();
         A.addAfter(2);
         A.addAfter(20);
         A.addAfter(200);
