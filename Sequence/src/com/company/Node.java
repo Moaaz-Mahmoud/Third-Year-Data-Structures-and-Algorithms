@@ -6,19 +6,19 @@ public class Node
 // 1. The node’s integer data is in the instance variable data.
 // 2. For the final node of a list, the link part is null.
 // Otherwise, the link part is a reference to the next node of the list.
-    private int data;
+    private double data;
     private Node link;
     public Node(){}
-    public Node(int initialData, Node initialLink)
+    public Node(double initialData, Node initialLink)
     {
         data = initialData;
         link = initialLink;
     }
-    public void addNodeAfter(int element)
+    public void addNodeAfter(double element)
     {
         link = new Node(element, link);
     }
-    public int getData( )
+    public double getData( )
     {
         return data;
     }
@@ -126,7 +126,7 @@ public class Node
             cursor = cursor.link;
         return cursor;
     }
-    public static Node listSearch(Node head, int target)
+    public static Node listSearch(Node head, double target)
     {
         Node cursor;
         for (cursor = head; cursor != null; cursor = cursor.link)
@@ -138,7 +138,7 @@ public class Node
     {
         link = link.link;
     }
-    public void setData(int newData)
+    public void setData(double newData)
     {
         data = newData;
     }
