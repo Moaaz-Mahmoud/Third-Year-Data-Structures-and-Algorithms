@@ -1,7 +1,5 @@
 package com.company;
 
-import java.lang.reflect.Member;
-
 /**
  * Implements the Sequence ADT (array-based)
  */
@@ -66,11 +64,20 @@ public class DoubleArraySequence {
      *           to fail with an arithmetic overflow.
      */
     public void addAfter(double element){
+        //Hard-coded for now
+        if(size == 0){
+            currentElementStatus = true;
+            currentIndex = 0;
+            buffer[0] = element;
+            size++;
+            return;
+        }
         if(size == capacity){
             Double newBuffer[];
             try {
                 if(capacity == 0) newBuffer = new Double[5];
                 else newBuffer = new Double[capacity*2];
+                capacity = newBuffer.length;
             }
             catch (OutOfMemoryError e){
                 throw e;
@@ -92,7 +99,7 @@ public class DoubleArraySequence {
         }
         else{
             //Shift starting from curIndex+1
-            for(int i = size; i >= currentIndex+1; i--) {
+            for(int i = size+1; i >= currentIndex+1; i--) {
                 buffer[i] = buffer[i-1];
             }
             //At this point, buffer = [0, 1, ..., curIndex, curIndex, ..., size-1]
@@ -111,11 +118,36 @@ public class DoubleArraySequence {
      *           to fail with an arithmetic overflow.
      */
     public void addBefore(double element){
+        //Hard-coded for now
+        if(currentIndex == 0){
+            currentElementStatus = true;
+            if(capacity > size){
+                for (int i = size; i >= 1; i--)
+                    buffer[i] = buffer[i - 1];
+                currentIndex = 0;
+                buffer[0] = element;
+            }
+            else{
+                Double newBuffer[];
+                try {
+                    if(capacity == 0) newBuffer = new Double[5];
+                    else              newBuffer = new Double[capacity*2];
+                }
+                catch (OutOfMemoryError e){
+                    throw e;
+                }
+                for(int i = size; i >= 1; i--)
+                    newBuffer[i] = buffer[i-1];
+                newBuffer[0] = element;
+            }
+            size++;
+            return;
+        }
         if(size == capacity){
             Double newBuffer[];
             try {
                 if(capacity == 0) newBuffer = new Double[5];
-                else newBuffer = new Double[capacity*2];
+                else              newBuffer = new Double[capacity*2];
             }
             catch (OutOfMemoryError e){
                 throw e;
@@ -152,8 +184,8 @@ public class DoubleArraySequence {
      *       of this sequence remains where it was, and the addend is also unchanged.
      * @throws NullPointerException  Indicates that addend is null.
      * @throws OutOfMemoryError  Indicates insufficient memory to increase the capacity of this sequence.
-     * @implNote An attempt to increase the capacity beyond Integer.MAX_VALUE will cause this sequence to
-     *           fail with an arithmetic overflow.
+     * @implNote  An attempt to increase the capacity beyond Integer.MAX_VALUE will cause this sequence to
+     *            fail with an arithmetic overflow.
      */
     public void addAll(DoubleArraySequence addend){
         if(addend == null)
