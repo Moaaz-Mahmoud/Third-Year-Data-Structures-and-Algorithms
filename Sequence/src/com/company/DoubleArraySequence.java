@@ -273,6 +273,8 @@ public class DoubleArraySequence {
             newSequence.buffer[i] = s1.buffer[i];
         for(int j = 0; j < s2.size; j++)
             newSequence.buffer[i++] = s2.buffer[j];
+        newSequence.size = s1.size() + s2.size();
+        newSequence.currentElementStatus = true;
         return newSequence;
     }
     /**
@@ -330,6 +332,8 @@ public class DoubleArraySequence {
         //currentIndex will remain the same as the elements after the removed element are shifted
         //backwards.
         size--;
+        if(currentIndex == size)
+            currentElementStatus = false;
     }
     /**
      * Accessor method to determine the number of elements in this sequence.
@@ -354,6 +358,18 @@ public class DoubleArraySequence {
      * @throws OutOfMemoryError  Indicates insufficient memory for altering the capacity.
      */
     public void trimToSize(){
+        Double[] newBuffer;
+        try{
+            newBuffer = new Double[size];
+        }
+        catch (OutOfMemoryError e){
+            throw e;
+        }
+        for(int i = 0; i < size; i++){
+            newBuffer[i] = buffer[i];
+        }
+        buffer = newBuffer;
         capacity = size;
     }
+
 }
