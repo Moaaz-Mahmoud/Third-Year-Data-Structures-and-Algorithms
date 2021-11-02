@@ -139,8 +139,12 @@ public class DoubleLinkedSequence {
         }
     }
     /**
-     *
+     * Accessor method to determine the number of elements in this sequence.
+     * @return  the number of elements in this sequence.
      */
+    public int size(){
+        return Node.listLength(head);
+    }
 
     /**
      * Set the current element at the front of the sequence.
@@ -148,7 +152,7 @@ public class DoubleLinkedSequence {
      * elements at all, then there is no current element).
      */
     public void start(){
-
+        currentNode = head;
     }
 
 
