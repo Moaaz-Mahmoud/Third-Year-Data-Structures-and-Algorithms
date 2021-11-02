@@ -38,10 +38,23 @@ public class DoubleLinkedSequence {
      * @throws OutOfMemoryError  Indicates insufficient memory for a new node.
      */
     public void addBefore(double element){
+        currentElementStatus = true;
+        if(head == null){
+            head = new Node(element, null);
+            currentNode = head;
+            return;
+        }
+        if(currentNode == head){
+            Node newNode = new Node(element, head);
+            head = newNode;
+            currentNode = head;
+            return;
+        }
         Node ctrl = head;
         for(; ctrl != null && ctrl.getLink() != currentNode; ctrl = ctrl.getLink());
         Node newNode = new Node(element, currentNode);
         ctrl.setLink(newNode);
+        //ctrl = ctrl.getLink();
     }
     /**
      * Place the contents of another sequence at the end of this sequence.
