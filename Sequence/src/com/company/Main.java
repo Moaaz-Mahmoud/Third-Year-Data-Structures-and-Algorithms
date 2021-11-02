@@ -46,6 +46,7 @@ class ArraySequenceTester{
 class LinkedSequenceTester{
     public static void test1(){
         DoubleLinkedSequence A = new DoubleLinkedSequence();
+        A.start();
         A.addAfter(2);
         A.addAfter(20);
         A.addAfter(200);
@@ -65,11 +66,19 @@ class LinkedSequenceTester{
         A.addBefore(4);
         A.addAfter(40);
     }
+    public static void test4(){
+        DoubleLinkedSequence A = new DoubleLinkedSequence();
+        DoubleLinkedSequence B = new DoubleLinkedSequence();
+        A.addAfter(1); A.addAfter(2); A.addAfter(3);
+        B.addAfter(1); B.addAfter(2); B.addAfter(3);
+        A.addAll(B);
+        System.out.print("A");
+    }
 }
 
 public class Main {
 
     public static void main(String[] args) {
-        LinkedSequenceTester.test3();
+        LinkedSequenceTester.test4();
     }
 }
