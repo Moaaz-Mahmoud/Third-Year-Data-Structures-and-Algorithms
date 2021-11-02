@@ -56,11 +56,20 @@ class LinkedSequenceTester{
         A.addBefore(20);
         A.addBefore(200);
     }
+    public static void test3(){
+        DoubleLinkedSequence A = new DoubleLinkedSequence();
+        A.addBefore(2);
+        A.addAfter(20);
+        A.addBefore(3);
+        A.addAfter(30);
+        A.addBefore(4);
+        A.addAfter(40);
+    }
 }
 
 public class Main {
 
     public static void main(String[] args) {
-        LinkedSequenceTester.test2();
+        LinkedSequenceTester.test3();
     }
 }

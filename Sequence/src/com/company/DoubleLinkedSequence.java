@@ -54,6 +54,7 @@ public class DoubleLinkedSequence {
         for(; ctrl != null && ctrl.getLink() != currentNode; ctrl = ctrl.getLink());
         Node newNode = new Node(element, currentNode);
         ctrl.setLink(newNode);
+        currentNode = newNode;
         //ctrl = ctrl.getLink();
     }
     /**
