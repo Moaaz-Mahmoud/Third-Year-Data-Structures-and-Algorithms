@@ -83,5 +83,73 @@ public class DoubleLinkedSequence {
         }
         return copySequence;
     }
+    /**
+     * Create a new sequence that contains all the elements from one sequence followed by another.
+     * @param s1  the first of two sequences.
+     * @param s2  the second of two sequences.
+     * @pre  Neither s1 nor s2 is null.
+     * @return  a new sequence that has the elements of s1 followed by s2 (with no current element).
+     * @throws IllegalArgumentException  Indicates that one of the arguments is null.
+     * @throws OutOfMemoryError  Indicates insufficient memory for the new sequence.
+     */
+    public static DoubleLinkedSequence concatenation(DoubleLinkedSequence s1, DoubleLinkedSequence s2){
+        if(s1.head == null || s2.head == null)
+            throw new IllegalStateException();
+        DoubleLinkedSequence res = new DoubleLinkedSequence();
+        for(Node ctrl = s1.head; ctrl != null; ctrl = ctrl.getLink())
+            res.addAfter(ctrl.getData());
+        for(Node ctrl = s2.head; ctrl != null; ctrl = ctrl.getLink())
+            res.addAfter(ctrl.getData());
+        return res;
+    }
+    /**
+     * Accessor method to determine the current element of the sequence.
+     * @pre  isCurrent( ) returns true.
+     * @return  the current element of the sequence.
+     * @throws IllegalStateException  Indicates that there is no current element.
+     */
+    public double getCurrent(){
+        if(currentElementStatus == false)
+            throw new IllegalStateException();
+        return currentNode.getData();
+    }
+    /**
+     * Accessor method to determine whether this sequence has a specified current element that can
+     * be retrieved with the getCurrent method.
+     * @return  true (there is a current element) or false (there is no current element at the moment).
+     */
+    public boolean isCurrent(){
+        return currentElementStatus;
+    }
+    /**
+     * Remove the current element from this sequence.
+     * @pre  isCurrent( ) returns true.
+     * @post The current element has been removed from the sequence, and the following element (if
+     *       there is one) is now the new current element. If there was no following element, then there
+     *       is now no current element.
+     * @throws IllegalStateException  Indicates that there is no current element, so removeCurrent may not be called.
+     */
+    public void removeCurrent(){
+        if(!isCurrent()) throw new IllegalStateException();
+        Node ctrl = head;
+        for(; ctrl != null; ctrl = ctrl.getLink()){
+            if(ctrl.getLink() == currentNode){
+                ctrl.setLink(ctrl.getLink().getLink());
+            }
+        }
+    }
+    /**
+     *
+     */
+
+    /**
+     * Set the current element at the front of the sequence.
+     * @post  The front element of this sequence is now the current element (but if the sequence has no
+     * elements at all, then there is no current element).
+     */
+    public void start(){
+
+    }
+
 
 }
