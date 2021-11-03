@@ -128,7 +128,7 @@ public class DoubleLinkedSequence {
      * @throws IllegalStateException  Indicates that there is no current element.
      */
     public double getCurrent(){
-        if(currentElementStatus == false)
+        if(!isCurrent())
             throw new IllegalStateException();
         return currentNode.getData();
     }
@@ -150,12 +150,24 @@ public class DoubleLinkedSequence {
      */
     public void removeCurrent(){
         if(!isCurrent()) throw new IllegalStateException();
+        if(currentNode == head){
+            currentNode = head = head.getLink();
+            if(currentNode == null) currentElementStatus = false;
+            return;
+        }
         Node ctrl = head;
-        for(; ctrl != null; ctrl = ctrl.getLink()){
+        if(ctrl.getLink() == null){ //implies that if isCurrent() returns true, head == currentNode is true
+            head = currentNode = null;
+            currentElementStatus = false;
+            return;
+        }
+        for(ctrl = head; ctrl.getLink() != null; ctrl = ctrl.getLink()){
             if(ctrl.getLink() == currentNode){
                 ctrl.setLink(ctrl.getLink().getLink());
+                ctrl = ctrl.getLink();
             }
         }
+        if(currentNode == null) currentElementStatus = false;
     }
     /**
      * Accessor method to determine the number of elements in this sequence.
@@ -164,13 +176,13 @@ public class DoubleLinkedSequence {
     public int size(){
         return Node.listLength(head);
     }
-
     /**
      * Set the current element at the front of the sequence.
      * @post  The front element of this sequence is now the current element (but if the sequence has no
      * elements at all, then there is no current element).
      */
     public void start(){
+        currentElementStatus = !(head == null);
         currentNode = head;
     }
 }

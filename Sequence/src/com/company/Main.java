@@ -74,11 +74,48 @@ class LinkedSequenceTester{
         A.addAll(B);
         System.out.print("A");
     }
+    public static void test5(){
+        DoubleLinkedSequence A = new DoubleLinkedSequence();
+        A.addAfter(1);  A.addAfter(4);
+        A.addBefore(3); A.addBefore(2);
+        for(A.start(); A.isCurrent(); A.advance())
+            System.out.print(A.getCurrent() + " ");
+    }
+    public static void test6(){
+        DoubleLinkedSequence A = new DoubleLinkedSequence();
+        A.addAfter(1);  A.addAfter(4);
+        A.addBefore(3); A.addBefore(2);
+        DoubleLinkedSequence B = (DoubleLinkedSequence) A.clone();
+        B.addAfter(5);
+        for(B.start(); B.isCurrent(); B.advance())
+            System.out.print(B.getCurrent() + " ");
+        System.out.println();
+        for(A.start(); A.isCurrent(); A.advance())
+            System.out.print(A.getCurrent() + " ");
+        System.out.println();
+        DoubleLinkedSequence X = DoubleLinkedSequence.concatenation(A, B);
+        for(X.start(); X.isCurrent(); X.advance())
+            System.out.print(X.getCurrent() + " ");
+    }
+    public static void test7(){
+        DoubleLinkedSequence A = new DoubleLinkedSequence();
+        A.addAfter(1);  A.addAfter(4);
+        A.addBefore(3); A.addBefore(2);
+        A.start();
+        for(A.start(); A.isCurrent(); A.advance())
+            System.out.print(A.getCurrent() + " ");
+        System.out.println();
+        for(A.start(); A.isCurrent(); ) {
+            A.removeCurrent();
+        }
+        for(A.start(); A.isCurrent(); A.advance())
+            System.out.print(A.getCurrent() + " ");
+    }
 }
 
 public class Main {
 
     public static void main(String[] args) {
-        LinkedSequenceTester.test4();
+        LinkedSequenceTester.test7();
     }
 }
