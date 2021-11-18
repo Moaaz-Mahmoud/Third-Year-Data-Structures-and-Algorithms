@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefWidth="320.0" spacing="20.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dsavisualizer.HelloController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <children>
+      <Pane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Pane prefHeight="100.0" prefWidth="280.0">
+               <children>
+                  <Button fx:id="LinkedListBtn" layoutX="11.0" layoutY="54.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="77.0" text="Linked List">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="StackBtn" layoutX="105.0" layoutY="54.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="77.0" text="Stack">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="QueueBtn" layoutX="194.0" layoutY="54.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="77.0" text="Queue">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+            <Pane layoutY="100.0" prefHeight="100.0" prefWidth="285.0">
+               <children>
+                  <Button fx:id="BSTBtn" layoutX="11.0" layoutY="8.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="77.0" text="BST">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="HeapBtn" layoutX="105.0" layoutY="8.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="77.0" text="Heap">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="HashTableBtn" layoutX="194.0" layoutY="8.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="77.0" text="Hash Table">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</VBox>
